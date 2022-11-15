@@ -1,0 +1,4 @@
+parameters:
+    mysql.dsn: 'mysql:host=mysql;dbname=coffee-machine;charset=UTF8'
+    mysql.user: 'coffee-machine'
+    mysql.password: 'coffee-machine'

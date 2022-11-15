@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    mysql:
+        image: mysql:5.7
+        container_name: ${PROJECT_NAME}.mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: 'coffee-machine'
+            MYSQL_DATABASE: 'coffee-machine'
+            MYSQL_USER: 'coffee-machine'
+            MYSQL_PASSWORD: 'coffee-machine'
+        ports:
+            - 3306:3306
+        volumes:
+            - ./docker/scripts:/docker-entrypoint-initdb.d
+        networks:
+            - mysqldb
+
+    php-cli:
+        build: ./docker/images/php-cli
+        container_name: ${PROJECT_NAME}.php-cli
+        working_dir: /usr/src/myapp
+        volumes:
+            - .:/usr/src/myapp
+        networks:
+            - mysqldb
+
+networks:
+    mysqldb:

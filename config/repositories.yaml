@@ -1,0 +1,12 @@
+services:
+    common.pdo.connection:
+        class:    Common\Infraestructure\PDO\Connection
+        arguments: ['%mysql.dsn%', '%mysql.user%', '%mysql.password%']
+
+    core.repository.drink:
+        class:    Core\Infraestructure\Persistence\PDO\MysqlDrinkRepository
+        arguments: ['@common.pdo.connection']
+
+    core.repository.order:
+        class:    Core\Infraestructure\Persistence\PDO\MysqlOrderRepository
+        arguments: ['@common.pdo.connection']
